@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dmlk2tw74cnax"]
+
+[sub_resource type="SystemFont" id="SystemFont_5cdg5"]
+font_names = PackedStringArray("Alte Haas Grotesk")
+
+[sub_resource type="SystemFont" id="SystemFont_a07e4"]
+font_names = PackedStringArray("Alte Haas Grotesk")
+
+[sub_resource type="SystemFont" id="SystemFont_fvn0l"]
+font_names = PackedStringArray("Alte Haas Grotesk")
+
+[node name="SportsMenu" type="Control" unique_id=2143381]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1690343042]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -180.0
+offset_right = 239.0
+offset_bottom = 86.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pong" type="Button" parent="VBoxContainer" unique_id=1479458185]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_5cdg5")
+
+[node name="Archery" type="Button" parent="VBoxContainer" unique_id=1807573482]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_a07e4")
+
+[node name="Label" type="Label" parent="." unique_id=1517739886]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -851.0
+offset_right = 851.0
+offset_bottom = 205.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_fvn0l")
+theme_override_font_sizes/font_size = 100
+text = "Sports Title"
+horizontal_alignment = 1
+vertical_alignment = 1

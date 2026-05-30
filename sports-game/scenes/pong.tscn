@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://e7x4e37e5gd3"]
+
+[ext_resource type="Script" uid="uid://bf0hgevb6d5cw" path="res://scripts/pong_game_manager.gd" id="1_7q0or"]
+[ext_resource type="Texture2D" uid="uid://cedc8lbgh5miv" path="res://assets/Ping Pong Assets/ping pong table.png" id="1_nth8n"]
+[ext_resource type="PackedScene" uid="uid://cuukrb8gf0rqq" path="res://scenes/player.tscn" id="4_ploue"]
+[ext_resource type="PackedScene" uid="uid://1gxyo11xuodt" path="res://scenes/opponent.tscn" id="5_60vo6"]
+[ext_resource type="Script" uid="uid://bjc4x1s1karxx" path="res://scripts/player_pong.gd" id="6_jjrnv"]
+[ext_resource type="PackedScene" uid="uid://bqfw20ov78oyc" path="res://scenes/ping_pong_ball.tscn" id="7_me32k"]
+[ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="8_jjrnv"]
+[ext_resource type="Script" uid="uid://cpjtfmjnc0b1w" path="res://scripts/opponent_pong.gd" id="8_osehs"]
+[ext_resource type="PackedScene" uid="uid://cbqpxotc64ttf" path="res://scenes/point.tscn" id="10_osehs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nth8n"]
+size = Vector2(1220, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_me32k"]
+size = Vector2(1220, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e43i4"]
+size = Vector2(1957, 902)
+
+[node name="Node2D" type="Node2D" unique_id=1865307810]
+metadata/_edit_horizontal_guides_ = [-78.0, 880.0, -946.0, 210.0, 804.0]
+metadata/_edit_vertical_guides_ = [1919.0, 1584.0]
+
+[node name="PongGameManager" type="Node" parent="." unique_id=214440389]
+unique_name_in_owner = true
+script = ExtResource("1_7q0or")
+
+[node name="TableSurface" type="StaticBody2D" parent="PongGameManager" unique_id=391235860 groups=["pongtable"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Bottom" type="CollisionShape2D" parent="PongGameManager/TableSurface" unique_id=1748048286]
+position = Vector2(940, 800)
+shape = SubResource("RectangleShape2D_nth8n")
+
+[node name="Top" type="CollisionShape2D" parent="PongGameManager/TableSurface" unique_id=1164897794]
+position = Vector2(940, 140)
+shape = SubResource("RectangleShape2D_me32k")
+
+[node name="Player" parent="PongGameManager" unique_id=1024674013 groups=["paddle"] instance=ExtResource("4_ploue")]
+unique_name_in_owner = true
+position = Vector2(-205, 242)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("6_jjrnv")
+
+[node name="Opponent" parent="PongGameManager" unique_id=174490242 groups=["oppaddle"] instance=ExtResource("5_60vo6")]
+unique_name_in_owner = true
+position = Vector2(1349, 338)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("8_osehs")
+
+[node name="PingPongBall" parent="PongGameManager" unique_id=1221777184 instance=ExtResource("7_me32k")]
+unique_name_in_owner = true
+position = Vector2(102, 109)
+collision_mask = 2
+initial_speed = 400.0
+max_speed = 800.0
+acceleration = 20.0
+
+[node name="Scoreboard" type="Sprite2D" parent="PongGameManager" unique_id=689087965]
+position = Vector2(942, 147)
+scale = Vector2(10.459184, 5.887755)
+texture = ExtResource("8_jjrnv")
+
+[node name="HomePoint" type="Label" parent="PongGameManager" unique_id=371772256]
+unique_name_in_owner = true
+offset_left = 790.0
+offset_top = 64.0
+offset_right = 862.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AwayPoint" type="Label" parent="PongGameManager" unique_id=410820094]
+unique_name_in_owner = true
+offset_left = 1007.0
+offset_top = 60.0
+offset_right = 1102.0
+offset_bottom = 115.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Point" parent="PongGameManager" unique_id=2068303835 instance=ExtResource("10_osehs")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PongGameManager/Point" unique_id=620788152]
+position = Vector2(965.5, 440)
+shape = SubResource("RectangleShape2D_e43i4")
+
+[node name="PingPongTable" type="Sprite2D" parent="." unique_id=314916532]
+position = Vector2(952.00006, 470.00006)
+scale = Vector2(25.958334, 19.128378)
+texture = ExtResource("1_nth8n")
+
+[connection signal="area_exited" from="PongGameManager/Point" to="PongGameManager" method="_on_point_area_exited"]
+[connection signal="area_exited" from="PongGameManager/Point" to="PongGameManager/Point" method="_on_area_exited"]
