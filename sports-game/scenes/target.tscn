@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://jiyd7xvqk7x5"]
+
+[ext_resource type="Script" uid="uid://cpbpshfmc5rtn" path="res://scripts/target.gd" id="1_b5a2r"]
+[ext_resource type="Texture2D" uid="uid://cymrsafx46llg" path="res://assets/Archery Assets/Target.png" id="2_nlbrr"]
+
+[node name="Node2D" type="Node2D" unique_id=177300385]
+script = ExtResource("1_b5a2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1514891660]
+position = Vector2(386, 207)
+scale = Vector2(6.3125, 5.8125)
+texture = ExtResource("2_nlbrr")

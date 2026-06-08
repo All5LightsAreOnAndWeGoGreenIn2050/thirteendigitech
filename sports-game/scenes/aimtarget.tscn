@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://brsp28aaulkd7"]
+
+[ext_resource type="Script" uid="uid://v4kkw012vaew" path="res://scripts/aimtarget.gd" id="1_gdibk"]
+[ext_resource type="Texture2D" uid="uid://cbt1ch6xlrhlm" path="res://assets/Archery Assets/Player Target.png" id="2_i3ylp"]
+
+[node name="Node2D" type="Node2D" unique_id=1196744168]
+script = ExtResource("1_gdibk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1986603673]
+position = Vector2(43.75, 56.25)
+scale = Vector2(2.7857144, 3.2959185)
+texture = ExtResource("2_i3ylp")

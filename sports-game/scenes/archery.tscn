@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bakf3ynpo0e31"]
+
+[ext_resource type="PackedScene" uid="uid://ptdancehn04u" path="res://scenes/archery_player.tscn" id="1_tk5tm"]
+[ext_resource type="PackedScene" uid="uid://fndi1k46dhik" path="res://scenes/opponent_archery.tscn" id="2_8e86i"]
+[ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="3_0woum"]
+
+[node name="Archery" type="Node2D" unique_id=93407430]
+
+[node name="GameManager" type="Node" parent="." unique_id=561607501]
+
+[node name="Player" parent="GameManager" unique_id=198911437 instance=ExtResource("1_tk5tm")]
+
+[node name="Opponent" parent="GameManager" unique_id=1485685295 instance=ExtResource("2_8e86i")]
+
+[node name="GameTimer" type="Timer" parent="GameManager" unique_id=908267507]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameManager" unique_id=991349227]
+
+[node name="Scoreboard" type="Sprite2D" parent="GameManager" unique_id=1660767262]
+position = Vector2(847, 265)
+scale = Vector2(24.193878, 10.5)
+texture = ExtResource("3_0woum")
+
+[node name="PlayerScore" type="Label" parent="GameManager" unique_id=292157452]
+offset_left = 502.0
+offset_top = 130.0
+offset_right = 656.0
+offset_bottom = 192.0
+
+[node name="OpponentScore" type="Label" parent="GameManager" unique_id=647486427]
+offset_left = 1050.0
+offset_top = 136.0
+offset_right = 1175.0
+offset_bottom = 180.0

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://fndi1k46dhik"]
+
+[ext_resource type="Texture2D" uid="uid://4cra6ofaisxy" path="res://assets/Archery Assets/Opponent Arrow.png" id="1_mb6k6"]
+[ext_resource type="Script" uid="uid://b55epof8s2jae" path="res://scripts/opponent_archery.gd" id="1_nywto"]
+[ext_resource type="PackedScene" uid="uid://dxg68i054b0bk" path="res://scenes/opponent_aim_target.tscn" id="3_n7s64"]
+
+[node name="Opponent" type="CharacterBody2D" unique_id=1485685295]
+script = ExtResource("1_nywto")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=157054310]
+
+[node name="OpponentBowTurn" type="Node2D" parent="." unique_id=2008966040]
+
+[node name="Sprite2D" type="Sprite2D" parent="OpponentBowTurn" unique_id=924324837]
+position = Vector2(740.75, 728.25)
+scale = Vector2(0.190918, 0.20166014)
+texture = ExtResource("1_mb6k6")
+
+[node name="Opponent Aim Target" parent="." unique_id=824876360 instance=ExtResource("3_n7s64")]
+unique_name_in_owner = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1233104131]
+unique_name_in_owner = true

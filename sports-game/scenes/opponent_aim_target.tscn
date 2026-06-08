@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dxg68i054b0bk"]
+
+[ext_resource type="Texture2D" uid="uid://oq754b0k104b" path="res://assets/Archery Assets/Opponent Target.png" id="1_5g16s"]
+
+[node name="Node2D" type="Node2D" unique_id=824876360]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=829648978]
+position = Vector2(58.75, 45.75)
+scale = Vector2(3.3979592, 2.867347)
+texture = ExtResource("1_5g16s")
