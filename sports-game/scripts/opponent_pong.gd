@@ -31,10 +31,6 @@ func _physics_process(_delta: float) -> void:
 		y_input = -1.0
 	elif Input.is_action_pressed("player2_down"):
 		y_input = 1.0
-	if Input.is_action_pressed("player2_left"):
-		x_input = -1.0
-	elif Input.is_action_pressed("player2_right"):
-		x_input = 1.0
 
 	velocity.y = y_input * player_speed
 	velocity.x = x_input * player_speed

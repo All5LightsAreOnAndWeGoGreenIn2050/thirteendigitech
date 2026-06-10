@@ -89,10 +89,20 @@ vertical_alignment = 1
 [node name="Point" parent="PongGameManager" unique_id=2068303835 instance=ExtResource("10_osehs")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PongGameManager/Point" unique_id=620788152]
+visible = false
 position = Vector2(965.5, 440)
 shape = SubResource("RectangleShape2D_e43i4")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=477524892]
+offset_left = -355.00006
+offset_top = -209.0
+offset_right = 2139.0
+offset_bottom = 1370.0
+color = Color(0.2784314, 0.27450982, 0.27450982, 1)
+
 [node name="PingPongTable" type="Sprite2D" parent="." unique_id=314916532]
+light_mask = 0
+visibility_layer = 2
 position = Vector2(952.00006, 470.00006)
 scale = Vector2(25.958334, 19.128378)
 texture = ExtResource("1_nth8n")
