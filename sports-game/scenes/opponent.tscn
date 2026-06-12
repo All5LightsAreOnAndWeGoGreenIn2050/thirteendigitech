@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://1gxyo11xuodt"]
 
 [ext_resource type="Texture2D" uid="uid://o3dy1orhbf3g" path="res://assets/Ping Pong Assets/ppdinosaur.png" id="1_ocjdi"]
+[ext_resource type="Texture2D" uid="uid://bf1fdd6k7jjx0" path="res://assets/Ping Pong Assets/Opponent.png" id="2_ha0xr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ocjdi"]
 atlas = ExtResource("1_ocjdi")
@@ -72,3 +73,8 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=681641107]
 position = Vector2(375, 175)
 shape = SubResource("CircleShape2D_ays1t")
+
+[node name="Opponent" type="Sprite2D" parent="." unique_id=1720502734]
+position = Vector2(367.87503, 208.62497)
+scale = Vector2(4.6989775, 4.7500005)
+texture = ExtResource("2_ha0xr")
