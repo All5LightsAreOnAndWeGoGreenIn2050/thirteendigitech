@@ -97,13 +97,14 @@ func _physics_process(delta: float) -> void:
 
 func pong_bounce() -> void:
 	# Makes sure that ball only bounces once
+	var player1_side: bool = position.x < Net
 	var player2_side: bool = position.x > Net
 	if player2_side:
 		player2_bounce += 1
 		if player2_bounce > 1:
 			emit_signal("point_scored", "player")
 			return
-	else:
+	elif player1_side:
 		player1_bounce += 1
 		if player1_bounce > 1:
 			emit_signal("point_scored", "opponent")

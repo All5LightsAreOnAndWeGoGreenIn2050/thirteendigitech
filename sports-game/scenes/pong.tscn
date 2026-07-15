@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://cbqpxotc64ttf" path="res://scenes/point.tscn" id="10_osehs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nth8n"]
-size = Vector2(1220, 15)
+size = Vector2(1220, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me32k"]
-size = Vector2(1220, 15)
+size = Vector2(1220, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e43i4"]
 size = Vector2(1957, 902)
@@ -32,11 +32,11 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="Bottom" type="CollisionShape2D" parent="PongGameManager/TableSurface" unique_id=1748048286]
-position = Vector2(940, 800)
+position = Vector2(940, 817)
 shape = SubResource("RectangleShape2D_nth8n")
 
 [node name="Top" type="CollisionShape2D" parent="PongGameManager/TableSurface" unique_id=1164897794]
-position = Vector2(940, 140)
+position = Vector2(940, 125.5)
 shape = SubResource("RectangleShape2D_me32k")
 
 [node name="Player" parent="PongGameManager" unique_id=1024674013 groups=["paddle"] instance=ExtResource("4_ploue")]

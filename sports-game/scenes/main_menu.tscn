@@ -23,22 +23,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l6cm7")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=763605975]
+[node name="Title" type="Label" parent="." unique_id=1442696353]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -280.99994
-offset_top = -130.0
-offset_right = 159.76294
-offset_bottom = 155.0
+offset_left = 4.0
+offset_top = -275.0
+offset_right = 4.0
+offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.3885015, 2.0208547)
-theme_override_constants/separation = 10
+theme_override_font_sizes/font_size = 70
+text = "Temu Switch Sports"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=436914960]
+layout_mode = 0
+offset_left = 641.0
+offset_top = 436.0
+offset_right = 1315.0
+offset_bottom = 750.0
+theme_override_constants/separation = 15
 
 [node name="Start Game" type="Button" parent="VBoxContainer" unique_id=1439655277]
 layout_mode = 2
@@ -63,23 +71,6 @@ layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_wu84c")
 theme_override_font_sizes/font_size = 20
 text = "Exit Game"
-
-[node name="Title" type="Label" parent="." unique_id=1442696353]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -275.0
-offset_right = 4.0
-offset_bottom = -179.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 70
-text = "Temu Switch Sports"
-horizontal_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Character Selection" to="." method="_on_character_selection_pressed"]
