@@ -74,22 +74,11 @@ func _physics_process(delta: float) -> void:
 			add_spin(collider)
 			speed = min(speed + acceleration, max_speed)
 			player1_bounce = 0
-			print("paddle player hit")
-			collider.set("can_hit", false)
 		elif collider.is_in_group("oppaddle"):
 			direction = direction.bounce(collision.get_normal())
 			add_spin(collider)
 			speed = min(speed + acceleration, max_speed)
 			player2_bounce = 0
-			print("paddle opponent hit")
-			collider.set("can_hit", false)
-		elif collider.is_in_group("oppaddle") and collider.get("can_hit"):
-			direction = direction.bounce(collision.get_normal())
-			add_spin(collider)
-			speed = min(speed + acceleration, max_speed)
-			player2_bounce = 0
-			print("paddle opponent hit")
-			collider.set("can_hit", false)
 		elif collider.is_in_group("pongtable"): # Calls for bounce rules
 			pong_bounce()
 
@@ -128,5 +117,5 @@ func add_spin(paddle: Node2D) -> void:
 	direction = direction.normalized()
 	if paddle.is_in_group("paddle"):
 		player1_bounce = 0
-	elif paddle.is_in_group("oppadle"):
+	elif paddle.is_in_group("oppaddle"):
 		player2_bounce = 0

@@ -11,7 +11,9 @@ const WIN_SCORE = 11
 var home_score = 0
 var away_score = 0
 var rally = false
-var last_scorer = ""
+var next_server = "player"
+var accepting_serve: bool = true
+
 # Ready function 
 func _ready() -> void:
 	update_scoreboard()
@@ -19,9 +21,13 @@ func _ready() -> void:
 
 # Update scoreboard
 func _on_point_scored(scorer: String) -> void:
+	if not accepting_serve:
+		return
+
+	accepting_serve = false
+	
 	rally = false
 	ball.stop()
-	last_scorer = scorer
 
 	if scorer == "player":
 		home_score += 1
@@ -29,6 +35,8 @@ func _on_point_scored(scorer: String) -> void:
 		away_score += 1
 
 	update_scoreboard()
+	next_server = "opponent" if next_server == "player" else "player"
+
 
 	if home_score >= WIN_SCORE or away_score >= WIN_SCORE:
 		end_game(scorer)
@@ -42,18 +50,22 @@ func reset_round() -> void:
 	player.reset()
 	opponent.reset()
 	rally = false
+	accepting_serve = true
 
 # Notify serve
 func notify_serve(who: String) -> void:
 	if rally:
-		return # Exit the function if rally is happening
-	var correct_server: String = "opponent" if last_scorer == "player" else "player"
-	if who != correct_server:
-		return # Exit the function if wrong person is serving
+		return
+
+	if who != next_server:
+		return
+
 	rally = true
-	# Determine the direction the ball launches + Trigger Hit animation
 	var serve_left: bool = (who == "opponent")
 	ball.launch(serve_left)
+
+	if not accepting_serve or rally:
+		return
 
 	print("notify_serve called by: ", who)
 
@@ -63,7 +75,7 @@ func end_game(scorer: String) -> void:
 	await get_tree().create_timer(4.0).timeout
 	home_score = 0
 	away_score = 0
-	last_scorer = ""
+	next_server = "player"
 	update_scoreboard()
 	reset_round()
 
