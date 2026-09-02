@@ -70,12 +70,16 @@ func _physics_process(delta: float) -> void:
 		print("hit something: ", collider.name)
 		# Reflect ball depending on direction + add spin, speed and bounce
 		if collider.is_in_group("paddle"):
-			direction = direction.bounce(collision.get_normal())
+			var normal := collision.get_normal()
+			direction = direction.bounce(normal).normalized()
+			global_position += normal * 2.0
 			add_spin(collider)
 			speed = min(speed + acceleration, max_speed)
 			player1_bounce = 0
 		elif collider.is_in_group("oppaddle"):
-			direction = direction.bounce(collision.get_normal())
+			var normal := collision.get_normal()
+			direction = direction.bounce(normal).normalized()
+			global_position += normal * 2.0
 			add_spin(collider)
 			speed = min(speed + acceleration, max_speed)
 			player2_bounce = 0
