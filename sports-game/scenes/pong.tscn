@@ -21,7 +21,7 @@ size = Vector2(1957, 902)
 
 [node name="Node2D" type="Node2D" unique_id=1865307810]
 metadata/_edit_horizontal_guides_ = [-78.0, 880.0, -946.0, 210.0, 804.0, 859.0, 878.0]
-metadata/_edit_vertical_guides_ = [1919.0, 1584.0, 937.0]
+metadata/_edit_vertical_guides_ = [1919.0, 1584.0, 934.0]
 
 [node name="PongGameManager" type="Node" parent="." unique_id=214440389]
 unique_name_in_owner = true
