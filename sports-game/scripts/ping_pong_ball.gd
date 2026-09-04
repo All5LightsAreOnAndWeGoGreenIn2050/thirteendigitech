@@ -94,13 +94,14 @@ func pong_bounce() -> void:
 	var player2_side: bool = position.x > Net
 	if player2_side:
 		player2_bounce += 1
-		if player2_bounce > 1:
-			stop()
+		print("Opponent Bounce count:", player2_bounce)
+		if player2_bounce >= 2:
 			emit_signal("point_scored", "player")
 			return
 	elif player1_side:
 		player1_bounce += 1
-		if player1_bounce > 1:
+		print("Opponent Bounce count:", player1_bounce)
+		if player1_bounce >= 2:
 			emit_signal("point_scored", "opponent")
 			return
 	direction.y *= -1
@@ -110,10 +111,11 @@ func pong_bounce() -> void:
 func _process(_delta: float) -> void:
 	if not moving:
 		return
-	if position.x > Net and player1_bounce > 0:
-		player1_bounce = 0
-	elif position.x < Net and player2_bounce > 0:
+	if position.x < Net and player2_bounce > 0:
 		player2_bounce = 0
+	elif position.x > Net and player1_bounce > 0:
+		player1_bounce = 0
+
 
 # Add some spin
 func add_spin(paddle: Node2D) -> void:
