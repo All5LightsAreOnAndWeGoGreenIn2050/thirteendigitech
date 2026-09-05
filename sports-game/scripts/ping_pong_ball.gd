@@ -6,7 +6,8 @@ signal point_scored(scorer: String)
 @export var max_speed: float = 800.0
 @export var acceleration: float = 20.0
 
-var Net: float = 952.0
+const Net: float = 615.0
+
 var speed: float = initial_speed
 var direction: Vector2 = Vector2.ZERO
 var moving: bool = false
@@ -100,7 +101,7 @@ func pong_bounce() -> void:
 			return
 	elif player1_side:
 		player1_bounce += 1
-		print("Opponent Bounce count:", player1_bounce)
+		print("Player Bounce count:", player1_bounce)
 		if player1_bounce >= 2:
 			emit_signal("point_scored", "opponent")
 			return
