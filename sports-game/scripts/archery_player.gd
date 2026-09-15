@@ -12,3 +12,13 @@ extends CharacterBody2D
 
 var can_fire: bool = true
 var current_target: Node2D = null
+
+func _ready() -> void:
+	cooldown_timer.wait_time = arrow_cooldown
+	cooldown_timer.one_shot = true
+	cooldown_timer.timeout.connect(cooldown_finished)
+	
+	
+func cooldown_finished() -> void:
+	can_fire = true
+	
