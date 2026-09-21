@@ -40,7 +40,6 @@ func _physics_process(_delta: float) -> void:
 	position.y = clamp(position.y, boundary_top_y, boundary_bottom_y)
 	move_and_slide()
 
-
 # Detect opponent hitting input
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player2_hit"):
@@ -48,7 +47,6 @@ func _input(event: InputEvent) -> void:
 		trigger_hit_animation()
 		print("opponent hit")
 		pong_game_manager.notify_serve("opponent")
-
 
 # Allow player to hit
 func enable_hit() -> void:

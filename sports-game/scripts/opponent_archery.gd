@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const gravity = 1000.0
+const GRAVITY = 1000.0
 
 @export var move_speed: float = 200.0
 @export var arrow_cooldown: float = 1.0
@@ -24,6 +24,7 @@ func _ready() -> void:
 	cooldown_timer.one_shot = true
 	cooldown_timer.timeout.connect(cooldown_finished)
 	
+	
 func _process(delta: float) -> void:
 	move(delta)
 	opponent_aim()
@@ -32,7 +33,7 @@ func _process(delta: float) -> void:
 
 func move(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += GRAVITY * delta
 	
 	var direction = Input.get_axis("player2_left","player2_right")
 	
@@ -46,8 +47,7 @@ func move(delta: float) -> void:
 func opponent_aim() -> void:
 	if not is_instance_valid(bow_turn):
 		return
-	var mouse_position = get_global_mouse_position()
-	bow_turn.look_at(mouse_position)
+	bow_turn.look_at(aim_guide.global_position)
 	
 
 func aim_target_update(delta: float) -> void:
@@ -68,7 +68,7 @@ func aim_target_update(delta: float) -> void:
 	aim_guide.global_position += aim_direction * move_speed * delta
 	
 	
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("player2_hit"):
 		fire()
 			
@@ -94,7 +94,7 @@ func fire() -> void:
 				nearest_target = t
 	arrow.target_node = nearest_target
 	print("nearest target: ", nearest_target)
-	print("target position: ", nearest_target.global_position if nearest_target else "none")
+	print("target position: ", str(nearest_target.global_position) if nearest_target else "none")
 	
 	var arrow_position = Vector2(16,0)
 	if is_instance_valid(bow_turn):

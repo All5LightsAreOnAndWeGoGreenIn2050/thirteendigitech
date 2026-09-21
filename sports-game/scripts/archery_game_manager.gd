@@ -1,9 +1,9 @@
 extends Node
 
 
-const total_time: float = 60.0
-const min_targets: int = 1.0
-const max_targets: int = 10.0
+const GAME_TIME_TOTAL: float = 60.0
+const MIN_TARGETS: int = 1
+const MAX_TARGETS: int = 10
 
 @export var target_scene: PackedScene
 
@@ -16,7 +16,7 @@ const max_targets: int = 10.0
 
 var archery_player_score: int = 0
 var archery_opponent_score: int = 0
-var time_left: float = total_time
+var time_left: float = GAME_TIME_TOTAL
 var game_activated: bool = false
 var targets_spawning: Array = []
 
@@ -29,23 +29,22 @@ func _ready() -> void:
 
 func start_game():
 	game_activated = true
-	game_timer.wait_time = total_time
+	game_timer.wait_time = GAME_TIME_TOTAL
 	game_timer.one_shot = true
 	game_timer.start()
 	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not game_activated:
 		return
-	time_left = max(0.0, time_left -delta)
+	time_left = max(0.0, time_left - delta)
 	game_timer_label.text= "Time: %d" % int(ceil(time_left))
 	
 	
 func target_spawning() -> void:
-	var count = randi_range(min_targets, max_targets)
+	var count = randi_range(MIN_TARGETS, MAX_TARGETS)
 	var viewportsize = get_tree().root.get_visible_rect().size
-	var margin = Vector2(150,120)
+	var margin = Vector2(150, 120)
 	var y_min = margin.y
 	var y_max = viewportsize.y - 200.0
 	
@@ -61,7 +60,7 @@ func target_spawning() -> void:
 		targets_spawning.append(targets)
 		
 	
-func on_target_hit(points: int, shooter: String, target: Node2D) -> void:
+func on_target_hit(points: int, shooter: String, _target: Node2D) -> void:
 	if not game_activated:
 		return
 	if shooter == "player":

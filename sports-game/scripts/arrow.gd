@@ -16,10 +16,10 @@ func launch(direction: Vector2, launch_speed: float = speed) -> void:
 	velocity = direction.normalized() * launch_speed
 	fly = true
 		
+		
 func _process(delta: float) -> void:
 	if not fly:
 		return
-
 
 	velocity.y += gravity * delta
 	global_position += velocity * delta

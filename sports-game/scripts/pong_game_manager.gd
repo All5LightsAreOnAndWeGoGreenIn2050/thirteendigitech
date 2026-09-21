@@ -37,7 +37,6 @@ func _on_point_scored(scorer: String) -> void:
 	update_scoreboard()
 	next_server = "opponent" if next_server == "player" else "player"
 
-
 	if home_score >= WIN_SCORE or away_score >= WIN_SCORE:
 		end_game(scorer)
 	else:

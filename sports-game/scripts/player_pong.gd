@@ -39,7 +39,6 @@ func _physics_process(_delta: float) -> void:
 	position.y = clamp(position.y, boundary_top_y, boundary_bottom_y)
 	move_and_slide()
 
-
 # Detect player hitting input
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player1_hit"):
