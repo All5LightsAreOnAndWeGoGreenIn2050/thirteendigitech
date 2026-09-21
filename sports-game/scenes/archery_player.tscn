@@ -2,10 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cli3yk6x2ikbi" path="res://assets/Archery Assets/Player Arrow.png" id="1_bff00"]
 [ext_resource type="Script" uid="uid://bv5kvf3dhk46p" path="res://scripts/archery_player.gd" id="1_omgmq"]
+[ext_resource type="PackedScene" uid="uid://bjpk5x5x4i1tv" path="res://scenes/arrow.tscn" id="2_d1g8b"]
 [ext_resource type="PackedScene" uid="uid://brsp28aaulkd7" path="res://scenes/aimtarget.tscn" id="2_omgmq"]
 
 [node name="Player" type="CharacterBody2D" unique_id=198911437]
 script = ExtResource("1_omgmq")
+arrow_scene = ExtResource("2_d1g8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1711871318]
 
@@ -13,8 +15,8 @@ script = ExtResource("1_omgmq")
 unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BowTurn" unique_id=1494991856]
-position = Vector2(286.00006, 405)
-scale = Vector2(0.10546879, 0.11767578)
+position = Vector2(322.50003, 587.375)
+scale = Vector2(0.20605467, 0.24731442)
 texture = ExtResource("1_bff00")
 
 [node name="PlayerAimGuide" parent="." unique_id=1196744168 instance=ExtResource("2_omgmq")]

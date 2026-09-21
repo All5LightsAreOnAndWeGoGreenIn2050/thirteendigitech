@@ -3,7 +3,7 @@ extends Node2D
 signal landed (arrow: Node2D)
 
 @export var speed: float = 900.0
-@export var gravity: = 900.0
+@export var gravity: = 10.0
 @export var shooter_id: = "player"
 
 @onready var arrow_sprite: Sprite2D = $Sprite2D
@@ -19,28 +19,23 @@ func launch(direction: Vector2, launch_speed: float = speed) -> void:
 func _process(delta: float) -> void:
 	if not fly:
 		return
-		
+
+
 	velocity.y += gravity * delta
 	global_position += velocity * delta
-	
 	rotation = velocity.angle()
 	
 	if target_node and target_node.is_inside_tree():
-		var arrow_distance = global_position.distance_to(target_node.global_position)
-		if arrow_distance < 90:
+		var dist := global_position.distance_to(target_node.global_position)
+		print("dist to target: ", dist)
+		if dist < 20:
+			print("HIT!")
 			fly = false
-			target_node.try_hit(global_position, shooter_id)
+			target_node.try_hit_target(global_position, shooter_id)
 			emit_signal("landed", self)
 			stick_in_target()
 			return
-			
-	var cleanup = get_viewport_rect().size
-	if global_position.y > cleanup.y + 100 or \
-		global_position.x < -100 or \
-		global_position.x > cleanup.x + 100:
-		fly = false
-		emit_signal("landed", self)
-		queue_free()
+		
 		
 func stick_in_target() -> void:
 	set_process(false)
