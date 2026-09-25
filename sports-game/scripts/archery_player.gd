@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-const GRAVITY = 1000.0
-
 @export var move_speed: float = 200.0
 @export var arrow_cooldown: float = 1.0
 @export var arrow_scene: PackedScene
@@ -31,11 +29,8 @@ func _process(delta: float) -> void:
 	aim_target_update(delta)
 	
 	
-func move(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-	
-	var direction = Input.get_axis("player1_left","player1_right")
+func move(_delta: float) -> void:
+	var direction = Input.get_axis("player1_left", "player1_right")
 	
 	velocity.x = direction * move_speed
 	
@@ -82,19 +77,6 @@ func fire() -> void:
 	var arrow: Node2D = arrow_scene.instantiate()
 	arrow.shooter_id = "player"
 	get_parent().add_child(arrow)
-	
-	var mouse_pos := get_global_mouse_position()
-	var nearest_target: Node2D = null
-	var nearest_dist: float = INF
-	for t in targets:
-		if is_instance_valid(t):
-			var d: float = t.global_position.distance_to(mouse_pos)
-			if d < nearest_dist:
-				nearest_dist = d
-				nearest_target = t
-	arrow.target_node = nearest_target
-	print("nearest target: ", nearest_target)
-	print("target position: ", str(nearest_target.global_position) if nearest_target else "none")
 	
 	var arrow_position = Vector2(16,0)
 	if is_instance_valid(bow_turn):

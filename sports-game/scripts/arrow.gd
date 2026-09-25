@@ -25,17 +25,20 @@ func _process(delta: float) -> void:
 	global_position += velocity * delta
 	rotation = velocity.angle()
 	
-	if target_node and target_node.is_inside_tree():
-		var dist := global_position.distance_to(target_node.global_position)
-		print("dist to target: ", dist)
-		if dist < 20:
-			print("HIT!")
-			fly = false
-			target_node.try_hit_target(global_position, shooter_id)
-			emit_signal("landed", self)
-			stick_in_target()
-			return
-		
+	for target in get_tree().get_nodes_in_group("targets"):
+		if is_instance_valid(target):
+			var dist = global_position.distance_to(target.global_position)
+			if dist < 20:
+				print("HIT!")
+				fly = false
+				target.try_hit_target(global_position, shooter_id)
+				emit_signal("landed", self)
+				stick_in_target()
+				return
+			
+	var vp = get_tree().root.get_visible_rect().size
+	if global_position.x < 0 or global_position.x > vp.x or global_position.y < 0 or global_position.y > vp.y + 100:
+		queue_free()
 		
 func stick_in_target() -> void:
 	set_process(false)

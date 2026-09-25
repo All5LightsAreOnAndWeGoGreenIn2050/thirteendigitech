@@ -1,15 +1,14 @@
 extends CharacterBody2D
 
-const GRAVITY = 1000.0
 
 @export var move_speed: float = 200.0
 @export var arrow_cooldown: float = 1.0
 @export var arrow_scene: PackedScene
 @export var arrow_speed: float = 900.0
-@export var boundary_top_y: float = -50.0
-@export var boundary_bottom_y: float = -50.0
-@export var boundary_left_x: float = 800.0    
-@export var boundary_right_x: float = 800.0
+@export var boundary_top_y: float = 700
+@export var boundary_bottom_y: float = 700
+@export var boundary_left_x: float = -200.0
+@export var boundary_right_x: float = -200.0
 
 @onready var aim_guide: Node2D = %"Opponent Aim Target"
 @onready var cooldown_timer : Timer = %Timer
@@ -31,10 +30,7 @@ func _process(delta: float) -> void:
 	aim_target_update(delta)
 	
 
-func move(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-	
+func move(_delta: float) -> void:
 	var direction = Input.get_axis("player2_left","player2_right")
 	
 	velocity.x = direction * move_speed
@@ -42,7 +38,7 @@ func move(delta: float) -> void:
 	position.x = clamp(position.x, boundary_left_x, boundary_right_x)
 	position.y = clamp(position.y, boundary_top_y, boundary_bottom_y)
 	move_and_slide()
-# Copy of ping pong clamps to do position
+	
 
 func opponent_aim() -> void:
 	if not is_instance_valid(bow_turn):
@@ -83,19 +79,6 @@ func fire() -> void:
 	arrow.shooter_id = "opponent"
 	get_parent().add_child(arrow)
 	
-	var mouse_pos := get_global_mouse_position()
-	var nearest_target: Node2D = null
-	var nearest_dist: float = INF
-	for t in targets:
-		if is_instance_valid(t):
-			var d: float = t.global_position.distance_to(mouse_pos)
-			if d < nearest_dist:
-				nearest_dist = d
-				nearest_target = t
-	arrow.target_node = nearest_target
-	print("nearest target: ", nearest_target)
-	print("target position: ", str(nearest_target.global_position) if nearest_target else "none")
-	
 	var arrow_position = Vector2(16,0)
 	if is_instance_valid(bow_turn):
 		arrow.global_position = bow_turn.global_position + \
@@ -104,7 +87,7 @@ func fire() -> void:
 	else:
 		arrow.global_position = Vector2(40, -10)
 		
-	var arrow_direction = (nearest_target.global_position - arrow.global_position).normalized()
+	var arrow_direction = (aim_guide.global_position - arrow.global_position).normalized()
 	arrow.launch(arrow_direction, arrow_speed)
 	
 	

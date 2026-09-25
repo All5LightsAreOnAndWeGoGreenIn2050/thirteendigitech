@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://rkx4htcd2y2t"]
+
+[ext_resource type="Texture2D" uid="uid://dldaqiwowejxd" path="res://assets/Football Assets/Football Field.png" id="1_7dkp6"]
+[ext_resource type="PackedScene" uid="uid://d22mffhq1x8iw" path="res://scenes/football_ball.tscn" id="1_08u63"]
+[ext_resource type="Script" uid="uid://c78iqtyt72kul" path="res://scenes/football_game_manager.gd" id="1_s6a86"]
+[ext_resource type="PackedScene" uid="uid://chodi2sx3woem" path="res://scenes/football_player.tscn" id="2_5c0ib"]
+[ext_resource type="PackedScene" uid="uid://dlcd6v783douh" path="res://scenes/football_opponent.tscn" id="3_s6a86"]
+[ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="6_fhnkn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik2cv"]
+size = Vector2(47, 397)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dkp6"]
+size = Vector2(1915, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2km7i"]
+size = Vector2(1901, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd8qq"]
+size = Vector2(33, 361)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7r85"]
+size = Vector2(40, 347)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25yr0"]
+size = Vector2(50, 301.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk2mo"]
+size = Vector2(46, 307)
+
+[node name="Football" type="Node2D" unique_id=294875640]
+
+[node name="FootballGameManager" type="Node" parent="." unique_id=1303838994]
+script = ExtResource("1_s6a86")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="FootballGameManager" unique_id=465055318]
+collision_mask = 0
+
+[node name="OpponentSideLowerBoundary" type="CollisionShape2D" parent="FootballGameManager/StaticBody2D" unique_id=1290848077 groups=["opponentsideboundary"]]
+position = Vector2(1901.5, 846.5)
+shape = SubResource("RectangleShape2D_ik2cv")
+
+[node name="TopBoundary" type="CollisionShape2D" parent="FootballGameManager/StaticBody2D" unique_id=496416921 groups=["topboundary"]]
+position = Vector2(947.5, 11)
+shape = SubResource("RectangleShape2D_7dkp6")
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="FootballGameManager/StaticBody2D" unique_id=121026438 groups=["bottomboundary"]]
+position = Vector2(957.5, 1041)
+shape = SubResource("RectangleShape2D_2km7i")
+
+[node name="PlayerSideUpperBoundary" type="CollisionShape2D" parent="FootballGameManager/StaticBody2D" unique_id=1663513651 groups=["playersideboundary"]]
+position = Vector2(21.5, 192)
+shape = SubResource("RectangleShape2D_wd8qq")
+
+[node name="OpponentSideUpperBoundary" type="CollisionShape2D" parent="FootballGameManager/StaticBody2D" unique_id=644810669 groups=["opponentsideboundary"]]
+position = Vector2(1901, 179.5)
+shape = SubResource("RectangleShape2D_c7r85")
+
+[node name="PlayerSideLowerBoundary" type="CollisionShape2D" parent="FootballGameManager/StaticBody2D" unique_id=2085263912 groups=["playersideboundary"]]
+position = Vector2(26.5, 860.5)
+shape = SubResource("RectangleShape2D_wd8qq")
+
+[node name="Soccer_Ball" parent="FootballGameManager" unique_id=300980721 instance=ExtResource("1_08u63")]
+position = Vector2(86, -89)
+
+[node name="football_player" parent="FootballGameManager" unique_id=917121469 instance=ExtResource("2_5c0ib")]
+position = Vector2(311, 528)
+ball_path = NodePath("../Soccer_Ball")
+
+[node name="football_opponent" parent="FootballGameManager" unique_id=105124075 instance=ExtResource("3_s6a86")]
+position = Vector2(1370, 411)
+ball_path = NodePath("../Soccer_Ball")
+
+[node name="GoalForPlayer" type="Area2D" parent="FootballGameManager" unique_id=694236792]
+
+[node name="PlayerPoint" type="CollisionShape2D" parent="FootballGameManager/GoalForPlayer" unique_id=299648537]
+position = Vector2(1903, 496.75)
+shape = SubResource("RectangleShape2D_25yr0")
+
+[node name="GoalForOpponent" type="Area2D" parent="FootballGameManager" unique_id=115209447 groups=["topboundary"]]
+
+[node name="OpponentPoint" type="CollisionShape2D" parent="FootballGameManager/GoalForOpponent" unique_id=311862374]
+position = Vector2(20, 516.5)
+shape = SubResource("RectangleShape2D_jk2mo")
+
+[node name="FootballField" type="Sprite2D" parent="." unique_id=1501398193]
+position = Vector2(963.00006, 532)
+scale = Vector2(38.979595, 32.081635)
+texture = ExtResource("1_7dkp6")
+
+[node name="Scoreboard" type="Sprite2D" parent="." unique_id=472541669]
+position = Vector2(964.99994, 189)
+scale = Vector2(9.137755, 7.4183674)
+texture = ExtResource("6_fhnkn")
+
+[node name="PlayerScoreLabel" type="Label" parent="." unique_id=636094731]
+offset_left = 834.0
+offset_top = 84.0
+offset_right = 896.0
+offset_bottom = 141.0
+
+[node name="OpponentScoreLabel" type="Label" parent="." unique_id=1411395020]
+offset_left = 1033.0
+offset_top = 99.0
+offset_right = 1106.0
+offset_bottom = 141.0
+
+[node name="Centrepoint" type="Marker2D" parent="." unique_id=1934218729]
+position = Vector2(959, 525)
+gizmo_extents = 0.0
+
+[connection signal="body_exited" from="FootballGameManager/GoalForPlayer" to="FootballGameManager/Soccer_Ball" method="_on_goal_for_player_body_exited"]
+[connection signal="body_exited" from="FootballGameManager/GoalForOpponent" to="FootballGameManager/Soccer_Ball" method="_on_goal_for_opponent_body_exited"]

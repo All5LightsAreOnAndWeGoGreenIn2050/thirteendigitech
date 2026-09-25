@@ -17,13 +17,6 @@ position = Vector2(180, 290)
 
 [node name="Opponent" parent="GameManager" unique_id=1485685295 instance=ExtResource("2_8e86i")]
 position = Vector2(211, 30)
-move_speed = 200.0
-arrow_cooldown = 1.0
-arrow_speed = 900.0
-boundary_top_y = 700.0
-boundary_bottom_y = 700.0
-boundary_left_x = -200.0
-boundary_right_x = -200.0
 
 [node name="GameTimer" type="Timer" parent="GameManager" unique_id=908267507]
 

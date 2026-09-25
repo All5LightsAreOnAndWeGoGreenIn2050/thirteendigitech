@@ -6,21 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://brsp28aaulkd7" path="res://scenes/aimtarget.tscn" id="2_omgmq"]
 
 [node name="Player" type="CharacterBody2D" unique_id=198911437]
+position = Vector2(311, 249)
 script = ExtResource("1_omgmq")
 arrow_scene = ExtResource("2_d1g8b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1711871318]
 
 [node name="BowTurn" type="Node2D" parent="." unique_id=1853121981]
 unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BowTurn" unique_id=1494991856]
-position = Vector2(322.50003, 587.375)
-scale = Vector2(0.20605467, 0.24731442)
+position = Vector2(129.00003, 622)
+scale = Vector2(0.29808703, 0.33999267)
 texture = ExtResource("1_bff00")
 
 [node name="PlayerAimGuide" parent="." unique_id=1196744168 instance=ExtResource("2_omgmq")]
 unique_name_in_owner = true
+position = Vector2(-290, -180)
 
 [node name="Timer" type="Timer" parent="." unique_id=1537956334]
 unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=314178512]

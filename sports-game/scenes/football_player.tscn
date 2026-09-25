@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://chodi2sx3woem"]
+
+[ext_resource type="Texture2D" uid="uid://bdsy4t7g4uhi4" path="res://assets/Football Assets/dino_player_strip.png" id="1_hou3r"]
+[ext_resource type="Script" uid="uid://c7v7u1bj0uass" path="res://scripts/football_player.gd" id="1_im3v4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eflta"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(0, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im3v4"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(0, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f2ne"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(280, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8sih"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(560, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffr81"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(840, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r72kq"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(1120, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q8if"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(1400, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5drr"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(1680, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpjnp"]
+atlas = ExtResource("1_hou3r")
+region = Rect2(1960, 0, 280, 232)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wd8qq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eflta")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im3v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f2ne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8sih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffr81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r72kq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q8if")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5drr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpjnp")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="football_player" type="CharacterBody2D" unique_id=917121469]
+script = ExtResource("1_im3v4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=257233362]
+sprite_frames = SubResource("SpriteFrames_wd8qq")
+animation = &"idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1529312220]
+position = Vector2(74.8757, -55.75502)
+scale = Vector2(1.5069445, 2.2585785)
+polygon = PackedVector2Array(18.663132, -4.5360317, 12.027184, -16.933208, -22.479729, -22.246288, -127.99125, 36.640312, -82.86683, 68.07602, -43.714752, 69.40428, -11.862217, 39.73961)

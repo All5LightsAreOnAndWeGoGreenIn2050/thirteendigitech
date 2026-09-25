@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cbt1ch6xlrhlm" path="res://assets/Archery Assets/Player Target.png" id="2_i3ylp"]
 
 [node name="Node2D" type="Node2D" unique_id=1196744168]
+z_index = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1986603673]
-position = Vector2(43.75, 56.25)
+position = Vector2(707, 325)
 scale = Vector2(2.7857144, 3.2959185)
 texture = ExtResource("2_i3ylp")

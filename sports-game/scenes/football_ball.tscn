@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d22mffhq1x8iw"]
+
+[ext_resource type="Script" uid="uid://i4n21qkmumn2" path="res://scripts/football_ball.gd" id="1_2rdl7"]
+[ext_resource type="Texture2D" uid="uid://bfynr7ppy3s4w" path="res://assets/Football Assets/Football.png" id="1_t57g7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2km7i"]
+radius = 29.017237
+
+[node name="Soccer_Ball" type="CharacterBody2D" unique_id=300980721]
+position = Vector2(2, 2)
+script = ExtResource("1_2rdl7")
+
+[node name="Football" type="Sprite2D" parent="." unique_id=419014772]
+position = Vector2(0, 5)
+scale = Vector2(0.06060607, 0.056220103)
+texture = ExtResource("1_t57g7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=104746854]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_2km7i")

@@ -24,8 +24,8 @@ func reset() -> void:
 
 # Allows the player to move
 func _physics_process(_delta: float) -> void:
-	var x_input := 0.0
-	var y_input := 0.0
+	var x_input = 0.0
+	var y_input = 0.0
 
 	if Input.is_action_pressed("player1_up"):
 		y_input = -1.0

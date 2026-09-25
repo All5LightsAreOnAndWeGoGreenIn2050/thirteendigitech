@@ -71,11 +71,12 @@ func on_target_hit(points: int, shooter: String, _target: Node2D) -> void:
 		away_archery_label.text = "%d" % archery_opponent_score
 		
 	print("on_target_hit called, points: ", points, " shooter: ", shooter)
-		
-		
-func on_gamer_timer_timeout() -> void:
-	game_activated = false
 	
 	
 func restart_game() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_game_timer_timeout() -> void:
+	get_tree().reload_current_scene()
+	game_activated = false

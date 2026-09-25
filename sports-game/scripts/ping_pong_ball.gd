@@ -6,7 +6,7 @@ signal point_scored(scorer: String)
 @export var max_speed: float = 800.0
 @export var acceleration: float = 20.0
 
-const Net: float = 615.0
+const NET: float = 615.0
 
 var speed: float = initial_speed
 var direction: Vector2 = Vector2.ZERO
@@ -24,7 +24,7 @@ func _ready() -> void:
 
 # Puts the ball near the starting position
 func reset() -> void:
-	position = Vector2(Net - 290.0, 540.0)
+	position = Vector2(NET - 290.0, 540.0)
 	velocity = Vector2.ZERO
 	direction = Vector2.ZERO
 	moving = false
@@ -52,7 +52,7 @@ func launch(serve_left: bool) -> void:
 # Check who scored the point
 func _on_point_area_exited(body: Node) -> void:
 	if body == self:
-		if position.x > Net:
+		if position.x > NET:
 			emit_signal("point_scored", "player")
 		else:
 			emit_signal("point_scored", "opponent")
@@ -71,14 +71,14 @@ func _physics_process(delta: float) -> void:
 		print("hit something: ", collider.name)
 		# Reflect ball depending on direction + add spin, speed and bounce
 		if collider.is_in_group("paddle"):
-			var normal := collision.get_normal()
+			var normal = collision.get_normal()
 			direction = direction.bounce(normal).normalized()
 			global_position += normal * 2.0
 			add_spin(collider)
 			speed = min(speed + acceleration, max_speed)
 			player1_bounce = 0
 		elif collider.is_in_group("oppaddle"):
-			var normal := collision.get_normal()
+			var normal = collision.get_normal()
 			direction = direction.bounce(normal).normalized()
 			global_position += normal * 2.0
 			add_spin(collider)
@@ -89,10 +89,11 @@ func _physics_process(delta: float) -> void:
 
 		print("hit something: ", collision.get_collider().name)
 
+
 func pong_bounce() -> void:
 	# Makes sure that ball only bounces once
-	var player1_side: bool = position.x < Net
-	var player2_side: bool = position.x > Net
+	var player1_side: bool = position.x < NET
+	var player2_side: bool = position.x > NET
 	if player2_side:
 		player2_bounce += 1
 		print("Opponent Bounce count:", player2_bounce)
@@ -106,17 +107,16 @@ func pong_bounce() -> void:
 			emit_signal("point_scored", "opponent")
 			return
 	direction.y *= -1
-	print("pong bounce - position: ", position, " player2_side: ", position.x > Net)
+	print("pong bounce - position: ", position, " player2_side: ", position.x > NET)
 
 # Makes sure that no new bounce is counted after the ball crosses the net
 func _process(_delta: float) -> void:
 	if not moving:
 		return
-	if position.x < Net and player2_bounce > 0:
+	if position.x < NET and player2_bounce > 0:
 		player2_bounce = 0
-	elif position.x > Net and player1_bounce > 0:
+	elif position.x > NET and player1_bounce > 0:
 		player1_bounce = 0
-
 
 # Add some spin
 func add_spin(paddle: Node2D) -> void:

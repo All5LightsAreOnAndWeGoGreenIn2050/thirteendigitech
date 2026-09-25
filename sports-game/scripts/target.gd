@@ -56,16 +56,22 @@ func hide_target() -> void:
 	
 	
 func respawn() -> void:
+	print("sprite scale before reset: ", target_sprite.scale)
+	target_sprite.scale = Vector2(1.0, 1.0)
+	print("sprite after before reset: ", target_sprite.scale)
 	var vp_size = get_tree().root.get_visible_rect().size
 	var margin = Vector2 (150, 120)
 	position = Vector2(
 		randf_range(margin.x, vp_size.x - margin.x),
 		randf_range(margin.y, vp_size.y - 200.0)
 	)
+	target_sprite.visible = true
+	is_hit = false
 		
 		
 func play_hit_signal(points: int) -> void:
 	var tween = create_tween()
+	target_sprite.scale = Vector2(1.0, 1.0)
 	tween.tween_property(target_sprite, "scale", Vector2(1.18, 1.18), 0.07)
 	tween.tween_property(target_sprite, "scale", Vector2(1.0, 1.0), 0.13)
 	popup_score(points)

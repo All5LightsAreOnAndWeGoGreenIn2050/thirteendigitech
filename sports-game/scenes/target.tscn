@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cymrsafx46llg" path="res://assets/Archery Assets/Target.png" id="2_nlbrr"]
 
 [node name="Node2D" type="Node2D" unique_id=177300385]
+z_index = -1
 script = ExtResource("1_b5a2r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1514891660]
