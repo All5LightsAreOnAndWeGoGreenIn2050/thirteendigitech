@@ -101,6 +101,7 @@ func kick(dir: Vector2, kick_speed: float) -> void:
 	velocity = direction * speed
 	move = true
 	
+	
 func try_pickup(who: Node2D) -> bool:
 	if carrier != null or pickup_time > 0.0:
 		return false

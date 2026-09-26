@@ -81,6 +81,6 @@ func set_frozen(value: bool) -> void:
 	
 	
 func update_scoreboard() -> void:
-	player_score_label.text = "Player: %d" % scores["player"]
-	opponent_score_label.text = "Opponent: %d" % scores["opponent"]
+	player_score_label.text = "%d" % scores["player"]
+	opponent_score_label.text = "%d" % scores["opponent"]
 			

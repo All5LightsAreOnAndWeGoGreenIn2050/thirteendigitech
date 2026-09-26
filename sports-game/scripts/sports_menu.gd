@@ -7,3 +7,7 @@ func _on_pong_pressed() -> void:
 
 func _on_archery_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/archery.tscn")
+
+
+func _on_football_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/football.tscn")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dldaqiwowejxd" path="res://assets/Football Assets/Football Field.png" id="1_7dkp6"]
 [ext_resource type="PackedScene" uid="uid://d22mffhq1x8iw" path="res://scenes/football_ball.tscn" id="1_08u63"]
-[ext_resource type="Script" uid="uid://c78iqtyt72kul" path="res://scenes/football_game_manager.gd" id="1_s6a86"]
+[ext_resource type="Script" uid="uid://c78iqtyt72kul" path="res://scripts/football_game_manager.gd" id="1_s6a86"]
 [ext_resource type="PackedScene" uid="uid://chodi2sx3woem" path="res://scenes/football_player.tscn" id="2_5c0ib"]
 [ext_resource type="PackedScene" uid="uid://dlcd6v783douh" path="res://scenes/football_opponent.tscn" id="3_s6a86"]
 [ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="6_fhnkn"]
@@ -62,22 +62,27 @@ shape = SubResource("RectangleShape2D_wd8qq")
 
 [node name="Soccer_Ball" parent="FootballGameManager" unique_id=300980721 instance=ExtResource("1_08u63")]
 position = Vector2(86, -89)
+collision_layer = 4
 
 [node name="football_player" parent="FootballGameManager" unique_id=917121469 instance=ExtResource("2_5c0ib")]
 position = Vector2(311, 528)
+collision_layer = 2
 ball_path = NodePath("../Soccer_Ball")
 
 [node name="football_opponent" parent="FootballGameManager" unique_id=105124075 instance=ExtResource("3_s6a86")]
 position = Vector2(1370, 411)
+collision_layer = 2
 ball_path = NodePath("../Soccer_Ball")
 
 [node name="GoalForPlayer" type="Area2D" parent="FootballGameManager" unique_id=694236792]
+collision_mask = 4
 
 [node name="PlayerPoint" type="CollisionShape2D" parent="FootballGameManager/GoalForPlayer" unique_id=299648537]
 position = Vector2(1903, 496.75)
 shape = SubResource("RectangleShape2D_25yr0")
 
 [node name="GoalForOpponent" type="Area2D" parent="FootballGameManager" unique_id=115209447 groups=["topboundary"]]
+collision_mask = 4
 
 [node name="OpponentPoint" type="CollisionShape2D" parent="FootballGameManager/GoalForOpponent" unique_id=311862374]
 position = Vector2(20, 516.5)

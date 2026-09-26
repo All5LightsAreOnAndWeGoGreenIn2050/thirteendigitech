@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var lunge_speed: float = 400
 @export var stun_time: float = 0.5
 @export var ball_offset: float = 26.0
-@export var pickup_radius: float = 28.0
+@export var pickup_radius: float = 95.0
 
 @onready var ball = get_node(ball_path)
 @onready var football_opponent_anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -30,6 +30,9 @@ var _lunge_direction: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	start_position = position
 	football_opponent_anim.play("idle")
+	if ball == null:
+		push_error("ball_path is not set on %s — assign it in the Inspector" % name)
+	print(name, " ball reference: ", ball, " | instance id: ", ball.get_instance_id() if ball else "none")
 
 
 func _physics_process(delta: float) -> void:
@@ -73,6 +76,10 @@ func _physics_process(delta: float) -> void:
 
 func has_ball() -> bool:
 	return ball != null and ball.carrier == self
+	
+	
+func get_ball_anchor() -> Vector2:
+	return global_position
 
 
 func handle_ball(delta: float, input: Vector2) -> void:
@@ -120,9 +127,7 @@ func handle_shooting(delta: float, input: Vector2) -> void:
  
  
 func shoot(input: Vector2) -> void:
-	# Shoots wherever you're currently pressing; defaults to right if you're
-	# not holding a direction when you release the hit key.
-	var dir := input if input != Vector2.ZERO else Vector2.RIGHT
+	var dir = input if input != Vector2.ZERO else Vector2.LEFT
 	ball.kick(dir, lerpf(min_shot_speed, max_shot_speed, charge))
 	cancel_charge()
  
