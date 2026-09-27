@@ -21,27 +21,24 @@ const RING_SCORES = {
 var is_hit: bool = false
 
 func contains_global_position(global_point: Vector2) -> bool:
-	var outer_shape := get_node("White/CollisionShape2D") as CollisionShape2D
-	var circle := outer_shape.shape as CircleShape2D
+	var outer_shape = get_node("White/CollisionShape2D") as CollisionShape2D
+	var circle = outer_shape.shape as CircleShape2D
 	return outer_shape.to_local(global_point).length() <= circle.radius
 
 # Detects how much points the player should get
 func try_hit_target(arrow_global_position: Vector2, shooter: String) -> bool:
 	if is_hit:
 		return false
-		
-	print("try_hit_target called, arrow pos: ", arrow_global_position)
-	print("is_hit: ", is_hit)
-	
-	var points := 0
+	# Check each ring for highest value to lowest value in order to assign points
+	var points = 0
 	for ring in ["gold", "yellow", "red", "blue", "black", "white"]:
 		var area = get_node(ring.capitalize())
-		var collision_shape := area.get_node("CollisionShape2D") as CollisionShape2D
+		var collision_shape = area.get_node("CollisionShape2D") as CollisionShape2D
 		var local_position = collision_shape.to_local(arrow_global_position)
 		if local_position.length() <= collision_shape.shape.radius:
 			points = RING_SCORES[ring]
 			break
-	
+	# emits the signal with the amount of points the player has scored
 	emit_signal("hit", points, shooter)
 	play_hit_signal(points)
 	if points > 0:
@@ -59,9 +56,8 @@ func hide_target() -> void:
 	
 	
 func respawn() -> void:
-	print("sprite scale before reset: ", target_sprite.scale)
-	target_sprite.scale = Vector2(1.0, 1.0)
-	print("sprite after before reset: ", target_sprite.scale)
+	# Makes sure targets respawn with the right scale
+	target_sprite.scale = Vector2(5.5, 5.718)
 	var vp_size = get_tree().root.get_visible_rect().size
 	var margin = Vector2 (150, 120)
 	position = Vector2(

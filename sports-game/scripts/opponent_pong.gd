@@ -34,7 +34,6 @@ func _physics_process(_delta: float) -> void:
 
 	velocity.y = y_input * player_speed
 	velocity.x = x_input * player_speed
-	
 	# Restrict opponent to certain boundaries
 	position.x = clamp(position.x, boundary_left_x, boundary_right_x)
 	position.y = clamp(position.y, boundary_top_y, boundary_bottom_y)
@@ -45,14 +44,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player2_hit"):
 		enable_hit()
 		trigger_hit_animation()
-		print("opponent hit")
 		pong_game_manager.notify_serve("opponent")
 
 # Allow player to hit
 func enable_hit() -> void:
 	can_hit = true
 	
-# Animation
+# Animation triggers
 func trigger_hit_animation() -> void:
 	opponent_pong_anim.play("hit")
 	await opponent_pong_anim.animation_finished

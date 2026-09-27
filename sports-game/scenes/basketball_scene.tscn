@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://de78mmdkt1tas" path="res://scenes/basketball.tscn" id="3_2e0lh"]
 [ext_resource type="PackedScene" uid="uid://c3bqs5dwyipx8" path="res://scenes/basketball_player.tscn" id="4_wco8c"]
 [ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="5_2e0lh"]
+[ext_resource type="PackedScene" uid="uid://b77djewu3x2n2" path="res://scenes/pause_menu.tscn" id="7_fc1tu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2km7i"]
 size = Vector2(1927, 53)
@@ -116,6 +117,17 @@ offset_left = 1027.0
 offset_top = 74.0
 offset_right = 1103.0
 offset_bottom = 114.0
+
+[node name="BasketballTimerLabel" type="Label" parent="BasketballGameManager" unique_id=1540253785]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BasketballTimer" type="Timer" parent="BasketballGameManager" unique_id=1640864252]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1309008343]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1163523457 instance=ExtResource("7_fc1tu")]
+visible = false
 
 [connection signal="body_entered" from="BasketballGameManager/PlayerGoal" to="BasketballGameManager/Basketball" method="_on_player_goal_body_entered"]
 [connection signal="body_entered" from="BasketballGameManager/OpponentGoal" to="BasketballGameManager/Basketball" method="_on_opponent_goal_body_entered"]

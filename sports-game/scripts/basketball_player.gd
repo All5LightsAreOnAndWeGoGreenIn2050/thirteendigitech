@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var dribble_speed: float = 400.0
 @export var max_shot_speed: float = 800.0
 @export var min_shot_speed: float = 300.0
-@export var loft_speed: float = 500.0
+@export var loft_speed: float = 750.0
 @export var shot_charge_time: float = 1.0
 @export var tackle_range: float = 44.0
 @export var tackle_time: float = 0.8
@@ -34,7 +34,6 @@ func _ready() -> void:
 	basketball_player_anim.play("idle")
 	if ball == null:
 		push_error("ball_path is not set on %s — assign it in the Inspector" % name)
-	print(name, " ball reference: ", ball, " | instance id: ", ball.get_instance_id() if ball else "none")
 
 
 func _physics_process(delta: float) -> void:
@@ -83,12 +82,12 @@ func has_ball() -> bool:
 func get_ball_anchor() -> Vector2:
 	return global_position
 
-
+# Allows the player to pick up the ball
 func handle_ball(delta: float, input: Vector2) -> void:
 	if ball.carrier == null and _stun_timer <= 0.0:
 		if global_position.distance_to(ball.global_position) <= pickup_radius:
 			ball.try_pickup(self)
- 
+ 	# Steal the ball from the opponent
 	if _lunge_timer > 0.0:
 		try_steal()
  
@@ -123,22 +122,19 @@ func handle_shooting(delta: float, input: Vector2) -> void:
 		charging = true
 		charge = 0.0
 		wants_lob = false
-		print(name, " STARTED charging")
 	if charging:
 		charge = minf(charge + delta / shot_charge_time, 1.0)
 		if Input.is_action_pressed(_a("lob")):
 			wants_lob = true
-			print(name, " lob key seen — wants_lob is now true")
 		if Input.is_action_just_released(_a("hit")):
-			print(name, " RELEASING hit — charge: ", charge, " | wants_lob: ", wants_lob)
 			shoot(input)
  
  
 func shoot(input: Vector2) -> void:
 	var dir = input if input != Vector2.ZERO else Vector2.RIGHT
-	var kick_speed = lerpf(min_shot_speed, max_shot_speed, charge)
+	var throw_speed = lerpf(min_shot_speed, max_shot_speed, charge)
 	var this_loft = loft_speed if wants_lob else 0.0
-	ball.kick(dir, kick_speed, this_loft)
+	ball.kick(dir, throw_speed, this_loft)
 	cancel_charge()
  
  

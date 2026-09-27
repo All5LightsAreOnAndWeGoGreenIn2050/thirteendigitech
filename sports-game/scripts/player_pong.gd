@@ -44,14 +44,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("player1_hit"):
 		enable_hit()
 		trigger_hit_animation()
-		print("player hit")
 		pong_game_manager.notify_serve("player")
 		
 # Allow player to hit
 func enable_hit() -> void:
 	can_hit = true
 
-# Animation
+# Animation triggers
 func trigger_hit_animation() -> void:
 	player_pong_anim.play("hit")
 	await player_pong_anim.animation_finished

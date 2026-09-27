@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bqfw20ov78oyc" path="res://scenes/ping_pong_ball.tscn" id="7_me32k"]
 [ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="8_jjrnv"]
 [ext_resource type="Script" uid="uid://cpjtfmjnc0b1w" path="res://scripts/opponent_pong.gd" id="8_osehs"]
+[ext_resource type="PackedScene" uid="uid://b77djewu3x2n2" path="res://scenes/pause_menu.tscn" id="10_jjrnv"]
 [ext_resource type="PackedScene" uid="uid://cbqpxotc64ttf" path="res://scenes/point.tscn" id="10_osehs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nth8n"]
@@ -106,6 +107,11 @@ visibility_layer = 2
 position = Vector2(952.00006, 470.00006)
 scale = Vector2(25.958334, 19.128378)
 texture = ExtResource("1_nth8n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=3078484]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1163523457 instance=ExtResource("10_jjrnv")]
+visible = false
 
 [connection signal="area_exited" from="PongGameManager/Point" to="PongGameManager" method="_on_point_area_exited"]
 [connection signal="area_exited" from="PongGameManager/Point" to="PongGameManager/Point" method="_on_area_exited"]

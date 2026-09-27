@@ -14,7 +14,7 @@ arrow_scene = ExtResource("2_d1g8b")
 unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="BowTurn" unique_id=1494991856]
-position = Vector2(129.00003, 622)
+position = Vector2(4856, -1644.9998)
 scale = Vector2(0.29808703, 0.33999267)
 texture = ExtResource("1_bff00")
 

@@ -54,11 +54,11 @@ theme_override_fonts/font = SubResource("SystemFont_vue75")
 theme_override_font_sizes/font_size = 20
 text = "Start Game"
 
-[node name="Character Selection" type="Button" parent="VBoxContainer" unique_id=2011773973]
+[node name="Results" type="Button" parent="VBoxContainer" unique_id=2011773973]
 layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_ekxnf")
 theme_override_font_sizes/font_size = 20
-text = "Character Selection"
+text = "Results"
 
 [node name="Settings" type="Button" parent="VBoxContainer" unique_id=1548040354]
 layout_mode = 2
@@ -73,6 +73,6 @@ theme_override_font_sizes/font_size = 20
 text = "Exit Game"
 
 [connection signal="pressed" from="VBoxContainer/Start Game" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Character Selection" to="." method="_on_character_selection_pressed"]
+[connection signal="pressed" from="VBoxContainer/Results" to="." method="_on_results_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Exit Game" to="." method="_on_exit_game_pressed"]

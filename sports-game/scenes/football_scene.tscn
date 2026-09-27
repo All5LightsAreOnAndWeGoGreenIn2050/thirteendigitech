@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chodi2sx3woem" path="res://scenes/football_player.tscn" id="2_5c0ib"]
 [ext_resource type="PackedScene" uid="uid://dlcd6v783douh" path="res://scenes/football_opponent.tscn" id="3_s6a86"]
 [ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="6_fhnkn"]
+[ext_resource type="PackedScene" uid="uid://b77djewu3x2n2" path="res://scenes/pause_menu.tscn" id="7_b3qhu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ik2cv"]
 size = Vector2(47, 397)
@@ -88,6 +89,26 @@ collision_mask = 4
 position = Vector2(20, 516.5)
 shape = SubResource("RectangleShape2D_jk2mo")
 
+[node name="PlayerScoreLabel" type="Label" parent="FootballGameManager" unique_id=636094731]
+offset_left = 834.0
+offset_top = 84.0
+offset_right = 896.0
+offset_bottom = 141.0
+
+[node name="OpponentScoreLabel" type="Label" parent="FootballGameManager" unique_id=1411395020]
+offset_left = 1033.0
+offset_top = 99.0
+offset_right = 1106.0
+offset_bottom = 141.0
+
+[node name="FootballTimerLabel" type="Label" parent="FootballGameManager" unique_id=1724984307]
+offset_left = 87.0
+offset_top = 62.0
+offset_right = 638.0
+offset_bottom = 160.0
+
+[node name="FootballTimer" type="Timer" parent="FootballGameManager" unique_id=1824179989]
+
 [node name="FootballField" type="Sprite2D" parent="." unique_id=1501398193]
 position = Vector2(963.00006, 532)
 scale = Vector2(38.979595, 32.081635)
@@ -98,17 +119,10 @@ position = Vector2(964.99994, 189)
 scale = Vector2(9.137755, 7.4183674)
 texture = ExtResource("6_fhnkn")
 
-[node name="PlayerScoreLabel" type="Label" parent="." unique_id=636094731]
-offset_left = 834.0
-offset_top = 84.0
-offset_right = 896.0
-offset_bottom = 141.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=639207602]
 
-[node name="OpponentScoreLabel" type="Label" parent="." unique_id=1411395020]
-offset_left = 1033.0
-offset_top = 99.0
-offset_right = 1106.0
-offset_bottom = 141.0
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1163523457 instance=ExtResource("7_b3qhu")]
+visible = false
 
 [connection signal="body_exited" from="FootballGameManager/GoalForPlayer" to="FootballGameManager/Soccer_Ball" method="_on_goal_for_player_body_exited"]
 [connection signal="body_exited" from="FootballGameManager/GoalForOpponent" to="FootballGameManager/Soccer_Ball" method="_on_goal_for_opponent_body_exited"]

@@ -32,7 +32,6 @@ func _ready() -> void:
 	football_player_anim.play("idle")
 	if ball == null:
 		push_error("ball_path is not set on %s — assign it in the Inspector" % name)
-	print(name, " ball reference: ", ball, " | instance id: ", ball.get_instance_id() if ball else "none")
 
 
 func _physics_process(delta: float) -> void:

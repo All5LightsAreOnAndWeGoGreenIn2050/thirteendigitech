@@ -4,6 +4,7 @@ extends Node
 const GAME_TIME_TOTAL: float = 60.0
 const MIN_TARGETS: int = 1
 const MAX_TARGETS: int = 10
+const SAVE_PATH = "user://game_scores.json"
 
 @export var target_scene: PackedScene
 
@@ -44,18 +45,16 @@ func _process(delta: float) -> void:
 func target_spawning() -> void:
 	var count = randi_range(MIN_TARGETS, MAX_TARGETS)
 	var viewportsize = get_tree().root.get_visible_rect().size
-	print("viewport size: ", viewportsize)
 	var margin = Vector2(150, 120)
 	var y_min = margin.y
 	var y_max = viewportsize.y - 200.0
-	
+	# Determines where the targets spawn and repeats the process
 	for i in count:
 		var targets = target_scene.instantiate()
 		targets.position = Vector2(
 			randf_range(margin.x, viewportsize.x - margin.x),
 			randf_range(y_min, y_max)
 		)
-		print("target spawned at: ", targets.position)
 		targets.hit.connect(on_target_hit.bind(targets))
 		targets.add_to_group("targets")
 		add_child(targets)
@@ -71,8 +70,6 @@ func on_target_hit(points: int, shooter: String, _target: Node2D) -> void:
 	else:
 		archery_opponent_score += points
 		away_archery_label.text = "%d" % archery_opponent_score
-		
-	print("on_target_hit called, points: ", points, " shooter: ", shooter)
 	
 	
 func restart_game() -> void:
@@ -80,5 +77,26 @@ func restart_game() -> void:
 
 
 func _on_game_timer_timeout() -> void:
-	get_tree().reload_current_scene()
 	game_activated = false
+	
+	await get_tree().create_timer(1.0).timeout
+	get_tree().reload_current_scene()
+	
+# Saves score for results screen
+func save_scores() -> void:
+	var data = {}
+	if FileAccess.file_exists(SAVE_PATH):
+		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		data = JSON.parse_string(file.get_as_text())
+		file.close()
+	
+	data["archery"] = {
+		"home_score": archery_player_score,
+		"away_score": archery_opponent_score
+	}
+	
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file == null:
+		return
+	file.store_string(JSON.stringify(data))
+	file.close()

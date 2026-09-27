@@ -31,7 +31,7 @@ func reset() -> void:
 	speed = initial_speed
 	player1_bounce = 0
 	player2_bounce = 0
-	print("ball position: ", position)
+	
 
 # Stops the ball just before the next serve
 func stop() -> void:
@@ -46,8 +46,6 @@ func launch(serve_left: bool) -> void:
 		x_direction = -1.0
 	direction = Vector2(x_direction, randf_range(-0.4, 0.4)).normalized()
 	moving = true
-	print("launched - direction: ", direction)
-	print("serve_left: ", serve_left)
 
 # Check who scored the point
 func _on_point_area_exited(body: Node) -> void:
@@ -68,7 +66,6 @@ func _physics_process(delta: float) -> void:
 	
 	if collision:
 		var collider = collision.get_collider()
-		print("hit something: ", collider.name)
 		# Reflect ball depending on direction + add spin, speed and bounce
 		if collider.is_in_group("paddle"):
 			var normal = collision.get_normal()
@@ -87,8 +84,6 @@ func _physics_process(delta: float) -> void:
 		elif collider.is_in_group("pongtable"): # Calls for bounce rules
 			pong_bounce()
 
-		print("hit something: ", collision.get_collider().name)
-
 
 func pong_bounce() -> void:
 	# Makes sure that ball only bounces once
@@ -96,18 +91,15 @@ func pong_bounce() -> void:
 	var player2_side: bool = position.x > NET
 	if player2_side:
 		player2_bounce += 1
-		print("Opponent Bounce count:", player2_bounce)
-		if player2_bounce >= 2:
+		if player2_bounce >= 2: # Register point for player if opponent bounce count > 2
 			emit_signal("point_scored", "player")
 			return
 	elif player1_side:
 		player1_bounce += 1
-		print("Player Bounce count:", player1_bounce)
-		if player1_bounce >= 2:
+		if player1_bounce >= 2: # Register point for opponent if player bounce count > 2
 			emit_signal("point_scored", "opponent")
 			return
 	direction.y *= -1
-	print("pong bounce - position: ", position, " player2_side: ", position.x > NET)
 
 # Makes sure that no new bounce is counted after the ball crosses the net
 func _process(_delta: float) -> void:

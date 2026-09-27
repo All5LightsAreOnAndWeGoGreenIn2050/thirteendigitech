@@ -59,11 +59,12 @@ func _input(_event: InputEvent) -> void:
 			
 			
 func fire() -> void:
+	# Checks whether or not the player can fire and prevent them from firing immediately
 	if not can_fire:
 		return
 	can_fire = false
 	cooldown_timer.start()
-	
+	# Launches the arrow based on the bow position to the aim guide position
 	var arrow: Node2D = arrow_scene.instantiate()
 	arrow.shooter_id = "opponent"
 	var bow_sprite = bow_turn.get_node("Sprite2D") as Sprite2D

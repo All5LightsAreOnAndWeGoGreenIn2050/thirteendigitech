@@ -14,7 +14,7 @@ arrow_scene = ExtResource("2_n7s64")
 [node name="OpponentBowTurn" type="Node2D" parent="." unique_id=2008966040]
 
 [node name="Sprite2D" type="Sprite2D" parent="OpponentBowTurn" unique_id=924324837]
-position = Vector2(1275, 930.00006)
+position = Vector2(5057.0005, -487.99994)
 scale = Vector2(0.23291022, 0.2695311)
 texture = ExtResource("1_mb6k6")
 

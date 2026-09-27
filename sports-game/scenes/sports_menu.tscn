@@ -53,9 +53,16 @@ theme_override_fonts/font = SubResource("SystemFont_a07e4")
 theme_override_font_sizes/font_size = 40
 text = "Archery"
 
-[node name="Football" type="Button" parent="VBoxContainer" unique_id=1262709867]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=910301858]
+layout_mode = 2
+
+[node name="Football" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1262709867]
 layout_mode = 2
 text = "Football"
+
+[node name="Basketball" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=1653954662]
+layout_mode = 2
+text = "Basketball"
 
 [node name="Label" type="Label" parent="." unique_id=1517739886]
 layout_mode = 1
@@ -75,4 +82,5 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Pong" to="." method="_on_pong_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Archery" to="." method="_on_archery_pressed"]
-[connection signal="pressed" from="VBoxContainer/Football" to="." method="_on_football_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Football" to="." method="_on_football_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Basketball" to="." method="_on_basketball_pressed"]
