@@ -11,34 +11,34 @@ signal landed (arrow: Node2D)
 var velocity: Vector2 = Vector2.ZERO
 var fly: bool = false
 var target_node: Node2D = null
+var landing_position: Vector2 = Vector2.ZERO
 
-func launch(direction: Vector2, launch_speed: float = speed) -> void:
-	velocity = direction.normalized() * launch_speed
+func launch_to(destination: Vector2, launch_speed: float = speed) -> void:
+	landing_position = destination
+	var direction := (landing_position - global_position).normalized()
+	velocity = direction * launch_speed
+	rotation = direction.angle()
 	fly = true
-		
-		
+
 func _process(delta: float) -> void:
 	if not fly:
 		return
 
-	velocity.y += gravity * delta
-	global_position += velocity * delta
-	rotation = velocity.angle()
-	
+	var distance_left := global_position.distance_to(landing_position)
+	var travel_distance := velocity.length() * delta
+	if distance_left > travel_distance:
+		global_position += velocity.normalized() * travel_distance
+		return
+
+	# Snap to the captured guide centre so frame timing cannot shift the impact.
+	global_position = landing_position
+	fly = false
 	for target in get_tree().get_nodes_in_group("targets"):
-		if is_instance_valid(target):
-			var dist = global_position.distance_to(target.global_position)
-			if dist < 20:
-				print("HIT!")
-				fly = false
-				target.try_hit_target(global_position, shooter_id)
-				emit_signal("landed", self)
-				stick_in_target()
-				return
-			
-	var vp = get_tree().root.get_visible_rect().size
-	if global_position.x < 0 or global_position.x > vp.x or global_position.y < 0 or global_position.y > vp.y + 100:
-		queue_free()
+		if is_instance_valid(target) and target.contains_global_position(landing_position):
+			target.try_hit_target(landing_position, shooter_id)
+			break
+	emit_signal("landed", self)
+	stick_in_target()
 		
 func stick_in_target() -> void:
 	set_process(false)

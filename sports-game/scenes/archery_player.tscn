@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://cli3yk6x2ikbi" path="res://assets/Archery Assets/Player Arrow.png" id="1_bff00"]
 [ext_resource type="Script" uid="uid://bv5kvf3dhk46p" path="res://scripts/archery_player.gd" id="1_omgmq"]
-[ext_resource type="PackedScene" uid="uid://bjpk5x5x4i1tv" path="res://scenes/arrow.tscn" id="2_d1g8b"]
-[ext_resource type="PackedScene" uid="uid://brsp28aaulkd7" path="res://scenes/aimtarget.tscn" id="2_omgmq"]
+[ext_resource type="PackedScene" uid="uid://bjpk5x5x4i1tv" path="res://scenes/archery_arrow.tscn" id="2_d1g8b"]
+[ext_resource type="PackedScene" uid="uid://brsp28aaulkd7" path="res://scenes/archery_player_aimtarget.tscn" id="2_omgmq"]
 
 [node name="Player" type="CharacterBody2D" unique_id=198911437]
 position = Vector2(311, 249)

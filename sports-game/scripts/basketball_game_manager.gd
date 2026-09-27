@@ -12,11 +12,11 @@ var scores = {"player": 0, "opponent": 0}
 var spawn_player_position: Vector2
 var spawn_opponent_position: Vector2
 
-@onready var ball = $Soccer_Ball
-@onready var player = $football_player
-@onready var opponent = $football_opponent
-@onready var player_score_label = $BasketballGameManager/HomeLabel
-@onready var opponent_score_label = $BasketballGameManager/AwayLabel
+@onready var ball = $Basketball
+@onready var player = $Basketball_player
+@onready var opponent = $Basketball_opponent
+@onready var player_score_label = $HomeLabel
+@onready var opponent_score_label = $AwayLabel
 
 func _ready() -> void:
 	spawn_player_position = player.position

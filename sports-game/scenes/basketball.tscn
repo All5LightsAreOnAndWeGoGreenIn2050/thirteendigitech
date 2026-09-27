@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://de78mmdkt1tas"]
+
+[ext_resource type="Texture2D" uid="uid://yfiixb2yjn5g" path="res://assets/Basketball Assets/ChatGPT Image Sep 27, 2026, 09_04_59 AM.png" id="1_al20g"]
+[ext_resource type="Script" uid="uid://bihmsh604nm72" path="res://scripts/basketball_ball.gd" id="1_wa7ic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2km7i"]
+radius = 34.0
+
+[node name="Basketball" type="CharacterBody2D" unique_id=938543236 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_wa7ic")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=634701157]
+position = Vector2(3, -2)
+scale = Vector2(0.073365234, 0.06937799)
+texture = ExtResource("1_al20g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2001292526]
+position = Vector2(4, -2)
+shape = SubResource("CircleShape2D_2km7i")

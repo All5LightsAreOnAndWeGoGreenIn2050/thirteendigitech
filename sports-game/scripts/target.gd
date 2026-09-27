@@ -3,15 +3,15 @@ extends Node2D
 # Emitted when an arrow hits or misses the target
 signal hit(points: int, shooter: String)
 
-const OUTER_RADIUS: float = 16.0
-const RING_POINTS := [
-	{ "radius": 16.0, "points": 10 }, # White
-	{ "radius": 12.5, "points": 20 }, # Black
-	{ "radius": 9.5, "points": 50 }, # Blue
-	{ "radius": 6.5, "points": 60 }, # Red
-	{ "radius": 4.0, "points": 75 }, # Yellow
-	{ "radius": 2.0, "points": 100 }, # Gold
-]
+const OUTER_RADIUS: float = 88.0
+const RING_SCORES = {
+	"gold": 100,
+	"yellow": 75,
+	"red": 60,
+	"blue": 50,
+	"black": 20,
+	"white": 10,
+}
 
 @export var min_respawn_time: float = 1.0
 @export var max_respawn_time: float = 3.0
@@ -20,30 +20,33 @@ const RING_POINTS := [
 
 var is_hit: bool = false
 
+func contains_global_position(global_point: Vector2) -> bool:
+	var outer_shape := get_node("White/CollisionShape2D") as CollisionShape2D
+	var circle := outer_shape.shape as CircleShape2D
+	return outer_shape.to_local(global_point).length() <= circle.radius
+
 # Detects how much points the player should get
 func try_hit_target(arrow_global_position: Vector2, shooter: String) -> bool:
 	if is_hit:
 		return false
+		
+	print("try_hit_target called, arrow pos: ", arrow_global_position)
+	print("is_hit: ", is_hit)
 	
-	var local_position = to_local(arrow_global_position)
-	var distance = local_position.length()
-	print("distance from centre: ", distance, " outer_radius: ", OUTER_RADIUS)
-
-	if distance > OUTER_RADIUS:
-		emit_signal("hit", 0, shooter)
-		return false
-	var points: int = 10
-	for i in range(RING_POINTS.size() -1, -1, -1):
-		if distance <= RING_POINTS[i]["radius"]:
-			points = RING_POINTS[i]["points"]
-			break		
-			
-	print("try_hit_target called by: ", shooter)
+	var points := 0
+	for ring in ["gold", "yellow", "red", "blue", "black", "white"]:
+		var area = get_node(ring.capitalize())
+		var collision_shape := area.get_node("CollisionShape2D") as CollisionShape2D
+		var local_position = collision_shape.to_local(arrow_global_position)
+		if local_position.length() <= collision_shape.shape.radius:
+			points = RING_SCORES[ring]
+			break
 	
 	emit_signal("hit", points, shooter)
 	play_hit_signal(points)
-	hide_target()
-	return true
+	if points > 0:
+		hide_target()
+	return points > 0
 	
 	
 func hide_target() -> void:

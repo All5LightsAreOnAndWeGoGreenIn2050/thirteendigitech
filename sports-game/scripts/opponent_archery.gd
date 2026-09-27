@@ -25,19 +25,8 @@ func _ready() -> void:
 	
 	
 func _process(delta: float) -> void:
-	move(delta)
 	opponent_aim()
 	aim_target_update(delta)
-	
-
-func move(_delta: float) -> void:
-	var direction = Input.get_axis("player2_left","player2_right")
-	
-	velocity.x = direction * move_speed
-	
-	position.x = clamp(position.x, boundary_left_x, boundary_right_x)
-	position.y = clamp(position.y, boundary_top_y, boundary_bottom_y)
-	move_and_slide()
 	
 
 func opponent_aim() -> void:
@@ -70,25 +59,23 @@ func _input(_event: InputEvent) -> void:
 			
 			
 func fire() -> void:
+	if not can_fire:
+		return
 	can_fire = false
 	cooldown_timer.start()
-	print("opponent fired")
-	print("targets array size: ", targets.size())
 	
 	var arrow: Node2D = arrow_scene.instantiate()
 	arrow.shooter_id = "opponent"
+	var bow_sprite = bow_turn.get_node("Sprite2D") as Sprite2D
+	var aim_sprite = aim_guide.get_node("Sprite2D") as Sprite2D
+	var launch_origin: Vector2 = bow_sprite.global_position
+	var aim_point: Vector2 = aim_sprite.global_position
 	get_parent().add_child(arrow)
-	
-	var arrow_position = Vector2(16,0)
-	if is_instance_valid(bow_turn):
-		arrow.global_position = bow_turn.global_position + \
-		bow_turn.transform.x * arrow_position.x
-		arrow.rotation = bow_turn.global_rotation
-	else:
-		arrow.global_position = Vector2(40, -10)
-		
-	var arrow_direction = (aim_guide.global_position - arrow.global_position).normalized()
-	arrow.launch(arrow_direction, arrow_speed)
+	arrow.global_position = launch_origin
+	if aim_point.is_equal_approx(launch_origin):
+		arrow.queue_free()
+		return
+	arrow.launch_to(aim_point, arrow_speed)
 	
 	
 func register_targets(targets_spawning: Array) -> void:

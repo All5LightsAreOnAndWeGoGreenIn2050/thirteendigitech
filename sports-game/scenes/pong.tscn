@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bf0hgevb6d5cw" path="res://scripts/pong_game_manager.gd" id="1_7q0or"]
 [ext_resource type="Texture2D" uid="uid://cedc8lbgh5miv" path="res://assets/Ping Pong Assets/ping pong table.png" id="1_nth8n"]
-[ext_resource type="PackedScene" uid="uid://cuukrb8gf0rqq" path="res://scenes/player.tscn" id="4_ploue"]
-[ext_resource type="PackedScene" uid="uid://1gxyo11xuodt" path="res://scenes/opponent.tscn" id="5_60vo6"]
+[ext_resource type="PackedScene" uid="uid://cuukrb8gf0rqq" path="res://scenes/pong_player.tscn" id="4_ploue"]
+[ext_resource type="PackedScene" uid="uid://1gxyo11xuodt" path="res://scenes/pong_opponent.tscn" id="5_60vo6"]
 [ext_resource type="Script" uid="uid://bjc4x1s1karxx" path="res://scripts/player_pong.gd" id="6_jjrnv"]
 [ext_resource type="PackedScene" uid="uid://bqfw20ov78oyc" path="res://scenes/ping_pong_ball.tscn" id="7_me32k"]
 [ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="8_jjrnv"]

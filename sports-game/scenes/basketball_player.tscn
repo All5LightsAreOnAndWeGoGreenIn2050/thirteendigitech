@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://c3bqs5dwyipx8"]
+
+[ext_resource type="Texture2D" uid="uid://bdsy4t7g4uhi4" path="res://assets/Basketball Assets/dino_player_strip.png" id="1_ij7ml"]
+[ext_resource type="Script" uid="uid://ks1jyiagxa6g" path="res://scripts/basketball_player.gd" id="1_qssh5"]
+[ext_resource type="Texture2D" uid="uid://bdsy4t7g4uhi4" path="res://assets/Football Assets/dino_player_strip.png" id="2_hejao"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeca4"]
+atlas = ExtResource("1_ij7ml")
+region = Rect2(0, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hejao"]
+atlas = ExtResource("2_hejao")
+region = Rect2(0, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qssh5"]
+atlas = ExtResource("2_hejao")
+region = Rect2(280, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8hfg"]
+atlas = ExtResource("2_hejao")
+region = Rect2(560, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4uvd"]
+atlas = ExtResource("2_hejao")
+region = Rect2(840, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2570j"]
+atlas = ExtResource("2_hejao")
+region = Rect2(1120, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nknx3"]
+atlas = ExtResource("2_hejao")
+region = Rect2(1400, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_panex"]
+atlas = ExtResource("2_hejao")
+region = Rect2(1680, 0, 280, 232)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7mri"]
+atlas = ExtResource("2_hejao")
+region = Rect2(1960, 0, 280, 232)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2km7i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeca4")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hejao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qssh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8hfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4uvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2570j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nknx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_panex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7mri")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Basketball_player" type="CharacterBody2D" unique_id=1736692235]
+script = ExtResource("1_qssh5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1989784398]
+sprite_frames = SubResource("SpriteFrames_2km7i")
+animation = &"idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1164617318]
+position = Vector2(96, -106)
+polygon = PackedVector2Array(-22, 1, -75, 4, -217, 134, -142, 204, -77, 205, 8, 49, -2, 4)

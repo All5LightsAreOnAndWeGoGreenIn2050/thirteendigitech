@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://jiyd7xvqk7x5"]
+
+[ext_resource type="Script" uid="uid://cpbpshfmc5rtn" path="res://scripts/target.gd" id="1_b5a2r"]
+[ext_resource type="Texture2D" uid="uid://cymrsafx46llg" path="res://assets/Archery Assets/Target.png" id="2_nlbrr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wd8qq"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c7r85"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ik2cv"]
+radius = 33.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_25yr0"]
+radius = 46.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jk2mo"]
+radius = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qmwfc"]
+radius = 74.168724
+
+[node name="Node2D" type="Node2D" unique_id=177300385]
+z_index = -1
+script = ExtResource("1_b5a2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1514891660]
+position = Vector2(399, 208.5)
+scale = Vector2(5.5, 5.718)
+texture = ExtResource("2_nlbrr")
+
+[node name="Gold" type="Area2D" parent="." unique_id=1284814253]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gold" unique_id=894059849 groups=["gold"]]
+position = Vector2(402, 203)
+shape = SubResource("CircleShape2D_wd8qq")
+
+[node name="Yellow" type="Area2D" parent="." unique_id=645070999]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Yellow" unique_id=5388542 groups=["yellow"]]
+position = Vector2(402, 203)
+shape = SubResource("CircleShape2D_c7r85")
+
+[node name="Red" type="Area2D" parent="." unique_id=877453652]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Red" unique_id=1152210941 groups=["red"]]
+position = Vector2(401, 202)
+shape = SubResource("CircleShape2D_ik2cv")
+
+[node name="Blue" type="Area2D" parent="." unique_id=1745543065]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue" unique_id=46317604 groups=["blue"]]
+position = Vector2(402, 204)
+shape = SubResource("CircleShape2D_25yr0")
+
+[node name="Black" type="Area2D" parent="." unique_id=47644737]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Black" unique_id=1797288941 groups=["black"]]
+position = Vector2(401, 203)
+shape = SubResource("CircleShape2D_jk2mo")
+
+[node name="White" type="Area2D" parent="." unique_id=128445234]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="White" unique_id=869618712 groups=["white"]]
+position = Vector2(403, 202)
+shape = SubResource("CircleShape2D_qmwfc")

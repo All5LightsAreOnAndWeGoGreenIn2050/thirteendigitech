@@ -110,9 +110,5 @@ offset_top = 99.0
 offset_right = 1106.0
 offset_bottom = 141.0
 
-[node name="Centrepoint" type="Marker2D" parent="." unique_id=1934218729]
-position = Vector2(959, 525)
-gizmo_extents = 0.0
-
 [connection signal="body_exited" from="FootballGameManager/GoalForPlayer" to="FootballGameManager/Soccer_Ball" method="_on_goal_for_player_body_exited"]
 [connection signal="body_exited" from="FootballGameManager/GoalForOpponent" to="FootballGameManager/Soccer_Ball" method="_on_goal_for_opponent_body_exited"]

@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 func target_spawning() -> void:
 	var count = randi_range(MIN_TARGETS, MAX_TARGETS)
 	var viewportsize = get_tree().root.get_visible_rect().size
+	print("viewport size: ", viewportsize)
 	var margin = Vector2(150, 120)
 	var y_min = margin.y
 	var y_max = viewportsize.y - 200.0
@@ -54,6 +55,7 @@ func target_spawning() -> void:
 			randf_range(margin.x, viewportsize.x - margin.x),
 			randf_range(y_min, y_max)
 		)
+		print("target spawned at: ", targets.position)
 		targets.hit.connect(on_target_hit.bind(targets))
 		targets.add_to_group("targets")
 		add_child(targets)

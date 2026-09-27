@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://citer5dfg4g7k"]
+
+[ext_resource type="Texture2D" uid="uid://doydegmostqgr" path="res://assets/Basketball Assets/New Piskel (1).png" id="1_bnkuv"]
+[ext_resource type="Script" uid="uid://c5g7faknvgyre" path="res://scripts/basketball_game_manager.gd" id="1_wco8c"]
+[ext_resource type="PackedScene" uid="uid://cweayx51cdby" path="res://scenes/basketball_opponent.tscn" id="1_x3hdv"]
+[ext_resource type="PackedScene" uid="uid://de78mmdkt1tas" path="res://scenes/basketball.tscn" id="3_2e0lh"]
+[ext_resource type="PackedScene" uid="uid://c3bqs5dwyipx8" path="res://scenes/basketball_player.tscn" id="4_wco8c"]
+[ext_resource type="Texture2D" uid="uid://d166c5d1adhl7" path="res://assets/scoreboard.png" id="5_2e0lh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2km7i"]
+size = Vector2(1927, 53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wd8qq"]
+size = Vector2(1912.5, 61.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7r85"]
+size = Vector2(82, 1074)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik2cv"]
+size = Vector2(97, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25yr0"]
+size = Vector2(273, 58.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk2mo"]
+size = Vector2(229, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmwfc"]
+size = Vector2(240, 147)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_571bo"]
+size = Vector2(256.5, 129)
+
+[node name="Basketball" type="Node2D" unique_id=1401663702]
+
+[node name="BasketballGameManager" type="Node" parent="." unique_id=1519641821]
+script = ExtResource("1_wco8c")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BasketballGameManager" unique_id=1281082470]
+
+[node name="Boundary1" type="CollisionShape2D" parent="BasketballGameManager/StaticBody2D" unique_id=30653244 groups=["walls"]]
+position = Vector2(953.5, 16.5)
+shape = SubResource("RectangleShape2D_2km7i")
+
+[node name="Boundary2" type="CollisionShape2D" parent="BasketballGameManager/StaticBody2D" unique_id=1139647589 groups=["walls"]]
+position = Vector2(960.75, 1042.75)
+shape = SubResource("RectangleShape2D_wd8qq")
+
+[node name="Boundary3" type="CollisionShape2D" parent="BasketballGameManager/StaticBody2D" unique_id=1188820778 groups=["walls"]]
+position = Vector2(31, 527)
+shape = SubResource("RectangleShape2D_c7r85")
+
+[node name="Boundary4" type="CollisionShape2D" parent="BasketballGameManager/StaticBody2D" unique_id=452489119 groups=["walls"]]
+position = Vector2(1877.5, 530)
+shape = SubResource("RectangleShape2D_ik2cv")
+
+[node name="Boundary5" type="CollisionShape2D" parent="BasketballGameManager/StaticBody2D" unique_id=1775600926 groups=["walls"]]
+position = Vector2(192.5, 380.75)
+shape = SubResource("RectangleShape2D_25yr0")
+
+[node name="Boundary6" type="CollisionShape2D" parent="BasketballGameManager/StaticBody2D" unique_id=1143874215 groups=["walls"]]
+position = Vector2(1711.5, 386)
+shape = SubResource("RectangleShape2D_jk2mo")
+
+[node name="BasketBallField" type="Sprite2D" parent="BasketballGameManager" unique_id=2031974665]
+position = Vector2(959, 692.00006)
+scale = Vector2(40.632652, 25.12245)
+texture = ExtResource("1_bnkuv")
+
+[node name="Basketball" parent="BasketballGameManager" unique_id=938543236 instance=ExtResource("3_2e0lh")]
+position = Vector2(925, 539)
+collision_layer = 4
+
+[node name="Basketball_player" parent="BasketballGameManager" unique_id=1736692235 instance=ExtResource("4_wco8c")]
+position = Vector2(461, 505)
+collision_layer = 2
+ball_path = NodePath("../Basketball")
+
+[node name="Basketball_opponent" parent="BasketballGameManager" unique_id=1517626867 instance=ExtResource("1_x3hdv")]
+position = Vector2(1475, 503)
+collision_layer = 2
+ball_path = NodePath("../Basketball")
+
+[node name="Scoreboard" type="Sprite2D" parent="BasketballGameManager" unique_id=993455084]
+position = Vector2(947.00006, 172)
+scale = Vector2(9.744898, 7.642857)
+texture = ExtResource("5_2e0lh")
+
+[node name="PlayerGoal" type="Area2D" parent="BasketballGameManager" unique_id=975085729]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasketballGameManager/PlayerGoal" unique_id=422352666]
+position = Vector2(1706, 279.5)
+shape = SubResource("RectangleShape2D_qmwfc")
+
+[node name="OpponentGoal" type="Area2D" parent="BasketballGameManager" unique_id=1548241172]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasketballGameManager/OpponentGoal" unique_id=960625137]
+position = Vector2(195.75, 286.5)
+shape = SubResource("RectangleShape2D_571bo")
+
+[node name="HomeLabel" type="Label" parent="BasketballGameManager" unique_id=2133169577]
+anchors_preset = -1
+anchor_left = 0.112
+anchor_top = -0.21000001
+anchor_right = 0.112
+anchor_bottom = -0.21000001
+offset_left = 596.95996
+offset_top = 295.8
+offset_right = 661.95996
+offset_bottom = 348.8
+
+[node name="AwayLabel" type="Label" parent="BasketballGameManager" unique_id=2087009538]
+offset_left = 1027.0
+offset_top = 74.0
+offset_right = 1103.0
+offset_bottom = 114.0
+
+[connection signal="body_entered" from="BasketballGameManager/PlayerGoal" to="BasketballGameManager/Basketball" method="_on_player_goal_body_entered"]
+[connection signal="body_entered" from="BasketballGameManager/OpponentGoal" to="BasketballGameManager/Basketball" method="_on_opponent_goal_body_entered"]
